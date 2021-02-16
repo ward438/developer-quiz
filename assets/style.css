@@ -1,0 +1,118 @@
+.header {
+  text-align: center;
+  color: white;
+  font-family: "Big Shoulders Stencil Text", cursive;
+  background-color: rgba(75, 75, 114, 0.541);
+  align-items: center;
+  text-align: center;
+  font-size: 100px;
+  margin-top: 10px;
+}
+
+.container {
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.timer-box {
+  margin-top: 50px;
+  margin-bottom: 50px;
+  color: white;
+  background-color: bisque;
+}
+
+body {
+  background-color: antiquewhite;
+  /* background-image: url("https://media1.popsugar-assets.com/files/thumbor/fQV14blXlEh5-GohuhnAudI7TG8/fit-in/2048xorig/filters:format_auto-!!-:strip_icc-!!-:watermark-!popsugar-watermark_2x.png,-5,-5,0!-/2017/05/24/652/n/1922398/11ba884859259b36435d63.10345825_edit_img_image_16360412_1495635996/i/Dwayne-Johnson-Posing-Rock-Photos.jpg"); */
+}
+
+.input {
+  width: 150px;
+  height: 30px;
+}
+
+.conent-container {
+  width: 300px;
+  height: 100px;
+  color: white;
+  background-color: rgba(85, 35, 35, 0.541);
+  text-align: center;
+  line-height: 100px;
+}
+
+.left-box {
+  margin-left: 20px;
+  text-align: center;
+}
+
+.center {
+  display: inline-block;
+}
+
+.brown {
+  background-color: rgba(85, 40, 40, 0.37);
+}
+
+.center-box {
+  text-align: center;
+}
+
+h1 {
+  font-family: "Press Start 2P", cursive;
+  font-size: 50px;
+}
+
+.center {
+  margin-top: 20px;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0, 0, 0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+}
+
+/* Modal Content/Box */
+.modal-content {
+  background-color: #fefefe;
+  margin: 15% auto; /* 15% from the top and centered */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+}
+
+/* The Close Button */
+.close {
+  color: #aaa;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: black;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.conent-container {
+  width: 300px;
+  height: 100px;
+  color: white;
+  background-color: rgba(85, 35, 35, 0.541);
+  text-align: center;
+  line-height: 100px;
+}
+
+#game {
+  display: none;
+}
