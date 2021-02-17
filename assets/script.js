@@ -1,4 +1,5 @@
 const SECONDS = 100;
+var wrong = "Incorrect Answer, please try again";
 const QUESTIONS = [
     {
         id: "question1",
@@ -63,23 +64,32 @@ function displayScore(score) {
     $('#score').html(score)
 }
 
+
+
+
+
+
+
 function getAnswer() {
     var answer = $('input[name="answer"]:checked').val();
     // todo get the correct answer by checking it on the object.
     //  get the object by idetnifying the current active question.  
+
     if (answer == currentQuestion.answer) {
         return questionCorrect();
     }
     return questionWrong();
+
 }
 
 function questionCorrect() {
     currentScore += 50;
+
     for (var i = 0; i < QUESTIONS.length; i++) {
         if (QUESTIONS[i].display) {
             // hide current question
-            QUESTIONS[i].display = false;
 
+            QUESTIONS[i].display = false;
             // display next question
             if ((i + 1) > QUESTIONS.length - 1) {
                 completeGameSuccessfully();
@@ -95,11 +105,19 @@ function questionCorrect() {
     }
 }
 
+
 function questionWrong() {
-    // todo - reduce time
+
+    //time reduced by 5 seconds for each wrong answer
+    timeLeft -= 5000;
     // todo - either popup or some red text below the buttons 
     currentScore -= 10;
+    // return currentScore;
+
+    document.getElementById('incorrect').innerHTML = wrong;
 }
+
+
 
 function completeGameSuccessfully() {
     $('#game').hide();
@@ -117,7 +135,6 @@ function convertQuestionToHTML(questionObject) {
     return `<div id="${questionObject.id}"><h2><strong>${questionObject.question}</strong></h2>${answers}</div>`;
 
 }
-
 
 var timeLeft;
 var timer;
