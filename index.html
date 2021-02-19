@@ -27,9 +27,10 @@
 </head>
 
 <body>
-    <nav class="navbar greeting">
-        <div class="container-fluid">
-            <span class="greeting">
+    <div class="page-wrap">
+        <nav class="navbar greeting">
+            <div class="container-fluid">
+                <span class="greeting">
           <h2>
             <p>
               Choose the correct answer. Read carefully. <br />
@@ -38,85 +39,66 @@
             </p>
           </h2>
         </span>
-        </div>
-    </nav>
+            </div>
+        </nav>
 
-    <div class="row brown">
+        <div class="row brown">
 
-        <div class="score left-box">
-            <button style="max-width: 100px" class="container" id="startButton">
+            <div class="score left-box">
+                <button style="max-width: 100px" class="container" id="startButton">
             Start</button> Score:</span><span id="score"> </span>
-        </div>
-
-        <!--col 2/ middle/ button group-->
-        <div class="col-md-">
-            <div class="container timer-box" id="output"></div>
-        </div>
-        <div class="col-md-4 right-upper"></div>
-        <br />
-        <div id="game" class="row brown">
-            <div class="col-3 container">
-                <div class="questions" id="question"></div>
             </div>
 
-            <div class="col-2 container timer-box">
-                <span id="timerDisplay" style="color: rgb(243, 21, 21)"></span>
-                <div id="incorrect"></div>
-                <button style="max-width: 100px" class="container" id="submitButton">
+            <!--col 2/ middle/ button group-->
+            <div class="col-md- ">
+                <div class="container timer-box" id="output"></div>
+            </div>
+            <div class="col-md-4 right-upper"></div>
+            <br />
+            <div id="game" class="row brown">
+                <div class="col-4 container">
+                    <div class="questions" id="question"></div>
+                </div>
+
+                <div class="col-4 container timer-box">
+                    <span id="timerDisplay" style="color: rgb(243, 21, 21)"></span>
+                    <div id="incorrect"></div>
+                    <button style="max-width: 100px" class="container" id="submitButton">
             Submit
           </button>
-            </div>
-        </div>
-    </div>
-
-    <div id="loserModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">
-                        Sorry, you ran out of time. Please try again.
-                    </h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <div id="winnerModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">Finished The BrainBuster!</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-            </div>
-        </div>
-    </div>
-    <footer class=" text-center footer ">
-        <!-- Grid container -->
-        <div class="container p-12">
-            <!--Grid row-->
-            <div class="row">
-                <!--Grid column-->
-                <div class="col-3"></div>
-                <div class="col-lg-6">
-                    <h5 class="text-uppercase">
-                        <h2>The BrainBuster</h2>
-                    </h5>
-                    <h2>
-                        <p>
-                            If you can dream it, you can do it! Hang in there! Hugs not drugs! Exclusions apply, supplies limited, no COD's, no refunds! Call back at a later date, customer satisfaction is important to us!
-                        </p>
-                    </h2>
                 </div>
             </div>
         </div>
 
-        <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-            © 2021 Copyright:
-            <a class="text-dark" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap</a>
+        <div id="loserModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">
+                            Sorry, you ran out of time. Please try again.
+                        </h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
         </div>
-
-    </footer>
+        <div id="winnerModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Finished The BrainBuster!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="text-center p-3 footer site-footer" style="background-color: rgba(0, 0, 0, 0.2);">
+                © 2021 Copyright:
+                <a class="text-dark" href="https://getbootstrap.com/docs/5.0/getting-started/introduction/">Bootstrap</a>
+            </div>
+        </footer>
+    </div>
 
 
     <!--jquery-->
