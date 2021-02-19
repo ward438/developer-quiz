@@ -40,4 +40,4 @@ const QUESTIONS = [{
         answer: 3,
         display: false
     }
-];
+]

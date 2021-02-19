@@ -28,14 +28,14 @@ $(document).ready(function() {
     }
 
     function displayScore(score) {
+
         $('#score').text(score);
+
+
     }
 
     function getAnswer() {
         var answer = $('input[name="answer"]:checked').val();
-        // todo get the correct answer by checking it on the object.
-        //  get the object by idetnifying the current active question.  
-
         if (answer == currentQuestion.answer) {
             return questionCorrect();
         }
@@ -77,7 +77,7 @@ $(document).ready(function() {
     }
 
     function completeGameSuccessfully() {
-        clearInterval(timer)
+        clearInterval(timer);
         $('#game').hide();
         winnerModal.show();
         setScore(currentScore);
@@ -102,15 +102,11 @@ $(document).ready(function() {
 
     function gameOver() {
         loserModal.show();
-        // var colors = ["red", "green", "orange"]
-        // var randomColor = colors[Math.floor(Math.random() * colors.length)];
-        // modal.style.cssText = `display: block; color: red; background-color: ${randomColor}`;
-        // $('#game').hide(); // only displays gameover screen when you press start button
     }
 
-    function listOptions() {
-        return QUESTIONS.options[0, 1, 2, 3];
-    }
+    // function listOptions() {
+    //     return QUESTIONS.options[0, 1, 2, 3];
+    // }
     // created a css id -Rock, to be 
     $("#startButton").click(function() {
         for (var i = 0; i < QUESTIONS.length; i++) {
