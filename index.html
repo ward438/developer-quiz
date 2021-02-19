@@ -1,103 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!--css bootstrap-->
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
-      crossorigin="anonymous"
-    />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous" />
     <!--local css-->
     <link rel="stylesheet" href="assets/style.css" />
     <!--googel fonts-->
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
     <!--js bootstrap-->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-      crossorigin="anonymous"
-    ></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
 
     <title>Developer Quiz</title>
 
     <header>
-      <div class="header">
-        <h1>
-          <p>The Developer Brainbuster</p>
-        </h1>
-      </div>
-    </header>
-  </head>
-  <body>
-   
-    <div class="row brown">
-      <!--col 1/ left-->
-      <div class="col-md-3 left-box container center">
-        <button
-          style="min-width: 300px"
-          class="container"
-          id="startButton">Start</button>
-      </div>
-      <span>Score: </span><span id="score"></span>
-      <!--col 2/ middle/ button group-->
-      <div class="col-md-4">
-          <div class="container timer-box"  id="output"></div> 
-      </div>
-      <div class="col-md-4 right-upper">
-       
-         
-      </div>
-    </div>
-    <br />
-    <div id="game" class="row brown">
-      <div class="col-4 container white">                        
-        <div id="question" >              
+        <div class="header">
+            <h1>
+                <p>The Developer Brainbuster</p>
+            </h1>
         </div>
-        
-      </div>
+    </header>
+</head>
 
-      <div class="col-4 container timer-box">       
-        <span id="timerDisplay" style="color: black;"></span>
-        <div id="incorrect"></div>
-      <button
-      style="min-width: 300px"
-      class="container"
-      id="submitButton">Submit</button>  
-</div>      
-     
+<body>
+    <div class="row brown">
+        <!--col 1/ left-->
+        <div class="col-md-3 left-box container center">
+            <button style="min-width: 300px" class="container" id="startButton">
+          Start
+        </button>
+        </div>
+        <span>
+            
+            <div class="score ">Score:</div></span><span id="score"></span>
 
-   
-    <!-- The Modal -->
-<div id="myModal" class="modal">
+        <!--col 2/ middle/ button group-->
+        <div class="col-md-4">
+            <div class="container timer-box" id="output"></div>
+        </div>
+        <div class="col-md-4 right-upper"></div>
+        <br />
+        <div id="game" class="row brown">
+            <div class="col-4 container white">
+                <div id="question"></div>
+            </div>
 
-  <!-- Modal content -->
-  <div class="modal-content">
-    <div class="modal-header">
-      <span class="close">&times;</span>
-      <h2>GAME OVER</h2>
+            <div class="col-4 container timer-box">
+                <span id="timerDisplay" style="color: black"></span>
+                <div id="incorrect"></div>
+                <button style="min-width: 50px" class="container" id="submitButton">
+            Submit
+          </button>
+            </div>
+        </div>
     </div>
-    <div class="modal-body">
-      <span><h2>YOU LOSE!</h2></span>
-    </div>    
-  </div>
 
+    <div id="loserModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Sorry, you ran out of time. Please try again.</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 
+                </div>
+            </div>
+        </div>
 
-</div>
-    <!--jquery-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <!--local js-->
-    <script src="assets/script.js"></script>
-  </body>
+        <div id="winnerModal" class="modal fade" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Finished The BrainBuster!</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
 
+        <!--jquery-->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <!--local js-->
+        <script src="assets/constants.js"></script>
+        <script src="assets/script.js"></script>
+</body>
 
-  
 </html>

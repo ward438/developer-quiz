@@ -1,177 +1,118 @@
-const SECONDS = 100;
-var wrong = "Incorrect Answer, please try again";
-const QUESTIONS = [
-    {
-        id: "question1",
-        question: "What is JQuery?",
-        questionHTML: null,
-        options: [
-            "A method of specialized styling.",
-            "A JavaScript library.",
-            "A unique &lt;div&gt; tag."
-        ],
-        answer: 1,
-        display: true
-    },
-    {
-        id: "question2",
-        question: "Which one of these is a JavaScript package manager?",
-        questionHTML: null,
-        options: [
-            "Node.js",
-            "TypeScript",
-            "npm"
+$(document).ready(function() {
+    var currentQuestion = null;
+    var currentScore = getScore();
+    var timeLeft;
+    var timer;
+    var timerDisplay = document.getElementById("timerDisplay");
 
-        ],
+    var loserModal = new bootstrap.Modal(document.getElementById('loserModal'), {
+        keyboard: true
+    });
+    var winnerModal = new bootstrap.Modal(document.getElementById('winnerModal'), {
+        keyboard: true
+    });
 
-        answer: 2,
-        display: false
-    },
-    {
-        id: "question3",
-        question: "Which tool can you use to ensure code quality?",
-        questionHTML: null,
-        options: [
-            "Angular",
-            "jQuery",
-            "RequireJS",
-            "ESLint"
-        ],
-
-        answer: 3,
-        display: false
+    function setScore(newScore) {
+        localStorage.setItem("brainBusterScores", newScore);
+        displayScore(newScore);
     }
-];
-var currentQuestion = null;
-var currentScore = getScore();
 
-function setScore(newScore) {
-    localStorage.setItem("brainBusterScores", newScore);
-    displayScore(score);
-}
-
-function getScore() {
-    var score = localStorage.getItem("brainBusterScores");
-    if (score === null) {
-        score = 0;
+    function getScore() {
+        var score = localStorage.getItem("brainBusterScores");
+        if (score === null) {
+            score = 0;
+        }
+        score = parseInt(score);
+        displayScore(score);
+        return score;
     }
-    score = parseInt(score);
-    displayScore(score);
-    return score;
-}
 
-function displayScore(score) {
-    $('#score').html(score)
-}
-
-
-
-
-
-
-
-function getAnswer() {
-    var answer = $('input[name="answer"]:checked').val();
-    // todo get the correct answer by checking it on the object.
-    //  get the object by idetnifying the current active question.  
-
-    if (answer == currentQuestion.answer) {
-        return questionCorrect();
+    function displayScore(score) {
+        $('#score').text(score);
     }
-    return questionWrong();
 
-}
+    function getAnswer() {
+        var answer = $('input[name="answer"]:checked').val();
+        // todo get the correct answer by checking it on the object.
+        //  get the object by idetnifying the current active question.  
 
-function questionCorrect() {
-    currentScore += 50;
+        if (answer == currentQuestion.answer) {
+            return questionCorrect();
+        }
+        return questionWrong();
+    }
 
-    for (var i = 0; i < QUESTIONS.length; i++) {
-        if (QUESTIONS[i].display) {
-            // hide current question
+    function questionCorrect() {
+        currentScore += 50;
+        $('#incorrect').hide();
+        for (var i = 0; i < QUESTIONS.length; i++) {
+            if (QUESTIONS[i].display) {
+                // hide current question
 
-            QUESTIONS[i].display = false;
-            // display next question
-            if ((i + 1) > QUESTIONS.length - 1) {
-                completeGameSuccessfully();
-                return;
-            } else {
-                $("#question").html(QUESTIONS[i + 1].questionHTML);
-                QUESTIONS[i + 1].display = true;
-                currentQuestion = QUESTIONS[i + 1];
-                break;
+                QUESTIONS[i].display = false;
+                // display next question
+                if ((i + 1) > QUESTIONS.length - 1) {
+                    completeGameSuccessfully();
+                    return;
+                } else {
+                    $("#question").html(QUESTIONS[i + 1].questionHTML);
+                    QUESTIONS[i + 1].display = true;
+                    currentQuestion = QUESTIONS[i + 1];
+
+                    break;
+                }
+
             }
-
         }
     }
-}
 
 
-function questionWrong() {
+    function questionWrong() {
+        $('#incorrect').show();
 
-    //time reduced by 5 seconds for each wrong answer
-    timeLeft -= 5000;
-    // todo - either popup or some red text below the buttons 
-    currentScore -= 10;
-    // return currentScore;
+        timeLeft -= 4000;
+        currentScore -= 10;
+        $("#incorrect").empty().append(WRONG);
 
-    document.getElementById('incorrect').innerHTML = wrong;
-}
-
-
-
-function completeGameSuccessfully() {
-    $('#game').hide();
-    setScore(currentScore);
-    // todo - show some winning thing and have ability to start new game
-}
-
-function convertQuestionToHTML(questionObject) {
-    var answers = "";
-    for (var i = 0; i < questionObject.options.length; i++) {
-        var option = questionObject.options[i];
-        answers += `<input type="radio" name="answer" value=${i}><label for=${i}>${option}</label><br>`;
     }
 
-    return `<div id="${questionObject.id}"><h2><strong>${questionObject.question}</strong></h2>${answers}</div>`;
+    function completeGameSuccessfully() {
+        clearInterval(timer)
+        $('#game').hide();
+        winnerModal.show();
+        setScore(currentScore);
+        $('#startButton').show();
+    }
 
-}
+    function convertQuestionToHTML(questionObject) {
+        var answers = "";
+        for (var i = 0; i < questionObject.options.length; i++) {
+            var option = questionObject.options[i];
+            answers += `<input type="radio" name="answer" value=${i}><label for=${i}>${option}</label><br>`;
+        }
 
-var timeLeft;
-var timer;
-var wordInput = document.getElementById("output");
-var timerDisplay = document.getElementById("timerDisplay");
-var modal = document.getElementById("myModal");
+        return `<div id="${questionObject.id}"><h2><strong>${questionObject.question}</strong></h2>${answers}</div>`;
 
+    }
 
-function resetTimer() {
+    function resetTimer() {
+        timerDisplay.textContent = SECONDS;
+        return SECONDS * 1000;
+    }
 
-    timerDisplay.textContent = SECONDS;
-    return SECONDS * 1000;
-}
+    function gameOver() {
+        loserModal.show();
+        // var colors = ["red", "green", "orange"]
+        // var randomColor = colors[Math.floor(Math.random() * colors.length)];
+        // modal.style.cssText = `display: block; color: red; background-color: ${randomColor}`;
+        // $('#game').hide(); // only displays gameover screen when you press start button
+    }
 
-// <span> element that closes the modal
-var modalClose = document.getElementsByClassName("close")[0];
-modalClose.onclick = function () {
-    modal.style.display = "none";
-}
-
-
-function gameOver() {
-    var colors = ["red", "green", "orange"]
-    var randomColor = colors[Math.floor(Math.random() * colors.length)];
-    modal.style.cssText = `display: block; color: red; background-color: ${randomColor}`;
-    // $('#game').hide();  only displays gameover screen when you press start button
-}
-
-
-function listOptions() {
-    return QUESTIONS.options[0, 1, 2];
-}
-
-$(document).ready(function () {
-
+    function listOptions() {
+        return QUESTIONS.options[0, 1, 2, 3];
+    }
     // created a css id -Rock, to be 
-    $("#startButton").click(function () {
+    $("#startButton").click(function() {
         for (var i = 0; i < QUESTIONS.length; i++) {
             QUESTIONS[i].questionHTML = convertQuestionToHTML(QUESTIONS[i]);
         }
@@ -186,7 +127,7 @@ $(document).ready(function () {
             clearInterval(timer);
         }
         $(this).hide();
-        timer = setInterval(function () {
+        timer = setInterval(function() {
             timeLeft -= 1000;
             timerDisplay.textContent = timeLeft / 1000;
             if (timeLeft <= 0) {
@@ -200,12 +141,13 @@ $(document).ready(function () {
 
 
 
-    $('#content-container').click(function () {
+    $('#content-container').click(function() {
         return false;
     });
 
-    $('#submitButton').click(function () {
+    $('#submitButton').click(function() {
         getAnswer();
+
     });
 
 });
